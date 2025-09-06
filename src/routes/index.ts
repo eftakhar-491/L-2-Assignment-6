@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import { Register } from "@/components/modules/auth/Register";
 import { Login } from "@/components/modules/auth/Login";
+import { Verify } from "@/components/modules/auth/Verify";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         Component: Login,
+      },
+      {
+        path: "verify",
+        Component: Verify,
       },
     ],
   },

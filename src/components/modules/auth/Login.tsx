@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 
-import register from "../../../assets/register.jpg";
 import { useForm } from "react-hook-form";
 
 import {
@@ -119,7 +118,7 @@ export function Login({ className, ...props }: React.ComponentProps<"div">) {
 
           <div className="bg-muted relative hidden md:block">
             <img
-              src={register}
+              src={""}
               alt="Image"
               className="absolute inset-0 h-full w-full object-cover "
             />
