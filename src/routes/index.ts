@@ -5,6 +5,9 @@ import About from "../pages/About";
 import { Register } from "@/components/modules/auth/Register";
 import { Login } from "@/components/modules/auth/Login";
 import { Verify } from "@/components/modules/auth/Verify";
+import RideLayout from "@/components/layout/RideLayout";
+
+import rideRoute from "@/components/modules/ride/ride.route";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +37,11 @@ const router = createBrowserRouter([
         Component: Verify,
       },
     ],
+  },
+  {
+    path: "/ride",
+    Component: RideLayout,
+    children: [...rideRoute],
   },
 ]);
 

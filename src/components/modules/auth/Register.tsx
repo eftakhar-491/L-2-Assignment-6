@@ -49,11 +49,9 @@ export function Register({ className, ...props }: React.ComponentProps<"div">) {
       email: data.email,
       password: data.password,
       role: data.role,
-      vehicle: {
-        type: data.vehicle?.type,
-        number: data.vehicle?.number,
-        model: data.vehicle?.model,
-      },
+      ...(data.role === "DRIVER" && data.vehicle
+        ? { vehicle: data.vehicle }
+        : {}),
     };
     try {
       console.log(data);

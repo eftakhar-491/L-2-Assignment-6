@@ -19,9 +19,9 @@ export const RegisterFormSchema = z
     role: z.enum(["RIDER", "DRIVER", "ADMIN"]),
     vehicle: z
       .object({
-        type: z.string().min(2).max(50),
-        number: z.string().min(2).max(50),
-        model: z.string().min(2).max(50),
+        type: z.string().min(2).max(50).optional(),
+        number: z.string().min(2).max(50).optional(),
+        model: z.string().min(2).max(50).optional(),
       })
       .optional(),
   })
@@ -66,6 +66,22 @@ export const VerifyOTPFormSchema = z.object({
   email: z.string().min(2).max(100),
   otp: z.string().min(6).max(6),
 });
+export const LoginFormSchema = z.object({
+  email: z.string().min(2).max(100),
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters long." })
+    .regex(/^(?=.*[A-Z])/, {
+      message: "Password must contain at least 1 uppercase letter.",
+    })
+    .regex(/^(?=.*[!@#$%^&*])/, {
+      message: "Password must contain at least 1 special character.",
+    })
+    .regex(/^(?=.*\d)/, {
+      message: "Password must contain at least 1 number.",
+    }),
+});
 
 export type RegisterFormType = z.infer<typeof RegisterFormSchema>;
 export type VerifyOTPFormType = z.infer<typeof VerifyOTPFormSchema>;
+export type LoginFormType = z.infer<typeof LoginFormSchema>;
