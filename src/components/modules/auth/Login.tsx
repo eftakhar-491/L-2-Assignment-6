@@ -22,8 +22,10 @@ import { toast } from "sonner";
 import Password from "@/components/ui/Password";
 import { useAppDispatch } from "@/store/hook";
 import setUserInLocal from "@/helper/setUserInLocal";
+import { useNavigate } from "react-router";
 
 export function Login({ className, ...props }: React.ComponentProps<"div">) {
+  const navigate = useNavigate();
   const form = useForm<LoginFormType>({
     resolver: zodResolver(LoginFormSchema),
     defaultValues: {
@@ -46,6 +48,7 @@ export function Login({ className, ...props }: React.ComponentProps<"div">) {
         toast.success("Login successful!");
         setUserInLocal(result.data.data.user);
         dispatch({ type: "auth/login", payload: result.data.data.user });
+        navigate("/");
       }
     } catch (error) {
       console.error(error);

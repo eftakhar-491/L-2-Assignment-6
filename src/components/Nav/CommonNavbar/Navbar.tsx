@@ -21,12 +21,15 @@ import { Link } from "react-router";
 const navigationLinks = [
   { href: "#", label: "Home" },
   { href: "#", label: "Features" },
-  { href: "/ride/take-ride", label: "Take ride" },
+  { href: "/ride/take-ride", label: "Take Ride" },
+  { href: "/driver/choose-ride", label: "Share Ride" },
+
   { href: "#", label: "Pricing" },
   { href: "#", label: "About" },
 ];
 
 export default function Navbar() {
+  // 38-7
   return (
     <header className="border-b px-4 md:px-6">
       <div className="flex h-16 items-center justify-between gap-4">
@@ -91,12 +94,9 @@ export default function Navbar() {
               <NavigationMenuList className="gap-2">
                 {navigationLinks.map((link, index) => (
                   <NavigationMenuItem key={index}>
-                    <NavigationMenuLink
-                      href={link.href}
-                      className="text-muted-foreground hover:text-primary py-1.5 font-medium"
-                    >
+                    <Link to={link.href} className="">
                       {link.label}
-                    </NavigationMenuLink>
+                    </Link>
                   </NavigationMenuItem>
                 ))}
               </NavigationMenuList>

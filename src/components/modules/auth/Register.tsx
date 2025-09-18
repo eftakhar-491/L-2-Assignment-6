@@ -29,8 +29,10 @@ import { useRegisterMutation } from "@/store/features/auth/auth.api";
 import { toast } from "sonner";
 import Loading from "@/utils/Loading";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export function Register({ className, ...props }: React.ComponentProps<"div">) {
+  const navigate = useNavigate();
   const [isDriver, setIsDriver] = useState(false);
   const form = useForm<RegisterFormType>({
     resolver: zodResolver(RegisterFormSchema),
@@ -59,6 +61,7 @@ export function Register({ className, ...props }: React.ComponentProps<"div">) {
       const result = await register(userInfo).unwrap();
 
       toast.success("Registration successful");
+      navigate("/verify", { state: { email: data.email } });
       console.log(result);
     } catch (error: any) {
       toast.error(error.data?.message || "Registration failed");
@@ -271,7 +274,7 @@ export function Register({ className, ...props }: React.ComponentProps<"div">) {
                   </div>
                   <Input id="password" type="password" required />
                 </div> */}
-                  <Button type="submit" className="w-full">
+                  <Button type="submit" className="w-full cursor-pointer">
                     Register
                   </Button>
                   <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">

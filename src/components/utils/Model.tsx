@@ -1,4 +1,4 @@
-import { VerifyRide } from "../modules/ride/components/modal/VerifyRide";
+import { VerifyRide } from "../modules/driver/components/Modal/VerifyRide";
 
 const Model = () => {
   return (

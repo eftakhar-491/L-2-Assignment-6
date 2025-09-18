@@ -8,6 +8,8 @@ import { Verify } from "@/components/modules/auth/Verify";
 import RideLayout from "@/components/layout/RideLayout";
 
 import rideRoute from "@/components/modules/ride/ride.route";
+import driverRoute from "@/components/modules/driver/driver.route";
+import DriverLayout from "@/components/layout/DriverLayout";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,11 @@ const router = createBrowserRouter([
     path: "/ride",
     Component: RideLayout,
     children: [...rideRoute],
+  },
+  {
+    path: "/driver",
+    Component: DriverLayout,
+    children: [...driverRoute],
   },
 ]);
 

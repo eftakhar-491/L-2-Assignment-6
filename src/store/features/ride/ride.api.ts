@@ -16,7 +16,18 @@ const rideApi = baseApi.injectEndpoints({
         data: data,
       }),
     }),
+    rideAccept: build.mutation({
+      query: ({ _id, ...data }) => ({
+        url: `/ride/ride-accept/${_id}`,
+        method: "PATCH",
+        data: data,
+      }),
+    }),
   }),
 });
 
-export const { usePriceAndDetailsMutation, useRequestRideMutation } = rideApi;
+export const {
+  usePriceAndDetailsMutation,
+  useRequestRideMutation,
+  useRideAcceptMutation,
+} = rideApi;
