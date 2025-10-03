@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { type VerifyOTPFormType } from "@/components/modules/auth/auth.validetion";
+import { type VerifyAuthOTPFormType } from "@/components/modules/auth/auth.validetion";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { MapPin, User, DollarSign } from "lucide-react";
@@ -22,7 +22,7 @@ import { RideProgress } from "../RideProgress";
 export function RiderRideDetails() {
   const [verifyOTP, { isLoading }] = useVerifyOTPMutation();
 
-  const onCancel = async (data: VerifyOTPFormType) => {
+  const onCancel = async (data: VerifyAuthOTPFormType) => {
     console.log(data);
     const obj = {
       email: data.email,

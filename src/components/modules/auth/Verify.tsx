@@ -15,7 +15,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { VerifyOTPFormSchema, type VerifyOTPFormType } from "./auth.validetion";
+import {
+  VerifyAuthOTPFormSchema,
+  type VerifyAuthOTPFormType,
+} from "./auth.validetion";
 import {
   InputOTP,
   InputOTPGroup,
@@ -31,14 +34,14 @@ export function Verify({ className, ...props }: React.ComponentProps<"div">) {
   const location = useLocation();
   const { email } = location.state || {};
   const [verifyOTP, { isLoading }] = useVerifyOTPMutation();
-  const form = useForm<VerifyOTPFormType>({
-    resolver: zodResolver(VerifyOTPFormSchema),
+  const form = useForm<VerifyAuthOTPFormType>({
+    resolver: zodResolver(VerifyAuthOTPFormSchema),
     defaultValues: {
       email: email || "",
       otp: "",
     },
   });
-  const onSubmit = async (data: VerifyOTPFormType) => {
+  const onSubmit = async (data: VerifyAuthOTPFormType) => {
     console.log(data);
     const obj = {
       email: data.email,

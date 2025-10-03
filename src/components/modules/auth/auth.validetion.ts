@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { email, z } from "zod";
 
 export const RegisterFormSchema = z
   .object({
@@ -66,6 +66,10 @@ export const VerifyOTPFormSchema = z.object({
   _id: z.string(),
   otp: z.string().min(4).max(4),
 });
+export const VerifyAuthOTPFormSchema = z.object({
+  email: z.string().min(2).max(100),
+  otp: z.string().min(4).max(4),
+});
 export const LoginFormSchema = z.object({
   email: z.string().min(2).max(100),
   password: z
@@ -84,4 +88,5 @@ export const LoginFormSchema = z.object({
 
 export type RegisterFormType = z.infer<typeof RegisterFormSchema>;
 export type VerifyOTPFormType = z.infer<typeof VerifyOTPFormSchema>;
+export type VerifyAuthOTPFormType = z.infer<typeof VerifyAuthOTPFormSchema>;
 export type LoginFormType = z.infer<typeof LoginFormSchema>;
