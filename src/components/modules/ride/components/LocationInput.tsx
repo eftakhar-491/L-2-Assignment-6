@@ -23,9 +23,10 @@ import {
   type RidePriceType,
 } from "../ride.validetion";
 import { usePriceAndDetailsMutation } from "@/store/features/ride/ride.api";
-import { useAppSelector } from "@/store/hook";
+
 import ShowPriceDetails from "./modal/ShowPriceDetails";
 import { useState } from "react";
+import { useGetMeQuery } from "@/store/features/auth/auth.api";
 
 export default function LocationInput({
   className,
@@ -40,9 +41,10 @@ export default function LocationInput({
       dropoffLocation: "",
     },
   });
-  const user = useAppSelector((state) => state?.auth.user);
+  const { data: user } = useGetMeQuery(undefined);
   console.log("USER", user);
   const [priceAndDetails, { isLoading }] = usePriceAndDetailsMutation();
+
   const onSubmit = async (data: any) => {
     console.log(data);
     const obj = {

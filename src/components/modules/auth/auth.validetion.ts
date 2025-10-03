@@ -63,7 +63,7 @@ export const RegisterFormSchema = z
   );
 
 export const VerifyOTPFormSchema = z.object({
-  email: z.string().min(2).max(100),
+  _id: z.string(),
   otp: z.string().min(4).max(4),
 });
 export const LoginFormSchema = z.object({

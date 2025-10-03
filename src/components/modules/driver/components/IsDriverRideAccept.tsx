@@ -1,11 +1,11 @@
-import { useAppSelector } from "@/store/hook";
 import type React from "react";
 import AcceptedRide from "../AcceptedRide";
+import { useGetMeQuery } from "@/store/features/auth/auth.api";
 
 const IsDriverRideAccept = ({ children }: { children: React.ReactNode }) => {
-  const user = useAppSelector((state) => state.auth.user);
+  const { data: user } = useGetMeQuery(undefined);
   console.log(user);
-  if (user?.isRideAccepted) {
+  if (user?.data?.isRideAccepted) {
     return <AcceptedRide />;
   }
   return <div>{children}</div>;

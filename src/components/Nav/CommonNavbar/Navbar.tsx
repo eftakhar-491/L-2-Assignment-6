@@ -17,18 +17,27 @@ import {
 import { ModeToggle } from "@/utils/ModeToggler";
 import { Link } from "react-router";
 
-// Navigation links array to be used in both desktop and mobile menus
-const navigationLinks = [
-  { href: "#", label: "Home" },
-  { href: "#", label: "Features" },
-  { href: "/ride/take-ride", label: "Take Ride" },
-  { href: "/driver/choose-ride", label: "Share Ride" },
+import { useGetMeQuery } from "@/store/features/auth/auth.api";
+import getNavLinks from "@/helper/getNavLinks";
 
-  { href: "#", label: "Pricing" },
-  { href: "#", label: "About" },
-];
+// Navigation links array to be used in both desktop and mobile menus
+// const navigationLinks = [
+//   { href: "/", label: "Home" },
+//   { href: "#", label: "Features" },
+//   { href: "/ride/take-ride", label: "Take Ride" },
+//   { href: "/driver/choose-ride", label: "Share Ride" },
+
+//   { href: "#", label: "Pricing" },
+//   { href: "#", label: "About" },
+// ];
 
 export default function Navbar() {
+  const { data } = useGetMeQuery(undefined);
+
+  // const data = useAppSelector((state) => state.auth.user);
+
+  const navigationLinks = getNavLinks(data);
+
   // 38-7
   return (
     <header className="border-b px-4 md:px-6">
@@ -73,7 +82,7 @@ export default function Navbar() {
             <PopoverContent align="start" className="w-36 p-1 md:hidden">
               <NavigationMenu className="max-w-none *:w-full">
                 <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
-                  {navigationLinks.map((link, index) => (
+                  {navigationLinks?.map((link, index) => (
                     <NavigationMenuItem key={index} className="w-full">
                       <NavigationMenuLink href={link.href} className="py-1.5">
                         {link.label}
@@ -92,7 +101,7 @@ export default function Navbar() {
             {/* Navigation menu */}
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-2">
-                {navigationLinks.map((link, index) => (
+                {navigationLinks?.map((link, index) => (
                   <NavigationMenuItem key={index}>
                     <Link to={link.href} className="">
                       {link.label}
@@ -113,13 +122,15 @@ export default function Navbar() {
           </div>
           {/* User menu */}
           <ModeToggle />
-          <Link to="/login">
-            <Button className="cursor-pointer">Login</Button>
-          </Link>
-          <Link to="/register">
+          {!data && (
+            <Link to="/login">
+              <Button className="cursor-pointer">Login</Button>
+            </Link>
+          )}
+          {/* <Link to="/register">
             <Button className="cursor-pointer">Register</Button>
-          </Link>
-          {false && <UserMenu />}
+          </Link> */}
+          {data && <UserMenu user={data} />}
         </div>
       </div>
     </header>

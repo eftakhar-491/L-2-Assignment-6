@@ -23,6 +23,28 @@ const rideApi = baseApi.injectEndpoints({
         data: data,
       }),
     }),
+    ridePickedup: build.mutation({
+      query: ({ _id, ...data }) => ({
+        url: `/ride/ride-picked-up-otp-send/${_id}`,
+        method: "PATCH",
+        data: data,
+      }),
+    }),
+    rideOtpVerify: build.mutation({
+      query: ({ _id, ...data }) => ({
+        url: `/ride/ride-otp-verify/${_id}`,
+        method: "PATCH",
+        data: data,
+      }),
+    }),
+    rideComplete: build.mutation({
+      query: ({ _id, ...data }) => ({
+        url: `/ride/ride-complete/${_id}`,
+        method: "PATCH",
+        data: data,
+        invalidates: ["getRide"],
+      }),
+    }),
   }),
 });
 
@@ -30,4 +52,7 @@ export const {
   usePriceAndDetailsMutation,
   useRequestRideMutation,
   useRideAcceptMutation,
+  useRidePickedupMutation,
+  useRideOtpVerifyMutation,
+  useRideCompleteMutation,
 } = rideApi;

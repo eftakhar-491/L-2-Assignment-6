@@ -22,7 +22,7 @@ import { toast } from "sonner";
 import Password from "@/components/ui/Password";
 import { useAppDispatch } from "@/store/hook";
 import setUserInLocal from "@/helper/setUserInLocal";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export function Login({ className, ...props }: React.ComponentProps<"div">) {
   const navigate = useNavigate();
@@ -159,9 +159,12 @@ export function Login({ className, ...props }: React.ComponentProps<"div">) {
                   </div>
                   <div className="text-center text-sm">
                     Don&apos;t have an account?{" "}
-                    <a href="#" className="underline underline-offset-4">
+                    <Link
+                      to={"/register"}
+                      className="underline underline-offset-4"
+                    >
                       Sign up
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </form>

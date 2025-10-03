@@ -7,10 +7,10 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
 } from "@/components/ui/drawer";
+import { useGetMeQuery } from "@/store/features/auth/auth.api";
 import { useRequestRideMutation } from "@/store/features/ride/ride.api";
-import { useAppSelector } from "@/store/hook";
+
 import Loading from "@/utils/Loading";
 import { toast } from "sonner";
 
@@ -25,8 +25,9 @@ const ShowPriceDetails = ({
   rideDetails: any;
   setRideDetails: (data: any) => void;
 }) => {
-  const user = useAppSelector((state) => state?.auth.user);
-  console.log(user);
+  const { data } = useGetMeQuery(undefined);
+  const user = data?.data;
+  console.log("data", user);
   const [requestRide, { isLoading }] = useRequestRideMutation();
   const onSubmit = async () => {
     const obj = {
@@ -56,7 +57,7 @@ const ShowPriceDetails = ({
       {isLoading && <Loading data={isLoading} />}
       {rideDetails && (
         <Drawer open={open} onOpenChange={setOpen}>
-          <DrawerTrigger>Open</DrawerTrigger>
+          {/* <DrawerTrigger>Open</DrawerTrigger> */}
           <DrawerContent>
             <DrawerHeader>
               <DrawerTitle>Confirm Ride Details</DrawerTitle>

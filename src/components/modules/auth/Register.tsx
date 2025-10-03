@@ -29,7 +29,7 @@ import { useRegisterMutation } from "@/store/features/auth/auth.api";
 import { toast } from "sonner";
 import Loading from "@/utils/Loading";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export function Register({ className, ...props }: React.ComponentProps<"div">) {
   const navigate = useNavigate();
@@ -299,9 +299,12 @@ export function Register({ className, ...props }: React.ComponentProps<"div">) {
                   </div>
                   <div className="text-center text-sm">
                     Don&apos;t have an account?{" "}
-                    <a href="#" className="underline underline-offset-4">
+                    <Link
+                      to={"/login"}
+                      className="underline underline-offset-4"
+                    >
                       Login
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </form>
@@ -318,7 +321,8 @@ export function Register({ className, ...props }: React.ComponentProps<"div">) {
         </Card>
         <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
           By clicking continue, you agree to our{" "}
-          <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+          <Link to={"/terms"}>Terms of Service</Link> and{" "}
+          <Link to={"/privacy"}>Privacy Policy</Link>.
         </div>
       </div>
     </>
